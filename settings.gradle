@@ -5,6 +5,7 @@ include ':SlidingMenuLib'
 
 include ':android-viewbadger'
 include ':viewpageIndicator'
+include ':PushSDK'
 include ':ShareSDK'
 include ':AnalysisSDK'
 include ':ImageLib'
@@ -23,6 +24,7 @@ project(':pulltorefresh').projectDir = new File('libs/pulltorefresh')
 project(':SlidingMenuLib').projectDir = new File('libs/SlidingMenuLib')
 project(':android-viewbadger').projectDir = new File('libs/android-viewbadger')
 project(':viewpageIndicator').projectDir = new File('libs/viewpageIndicator')
+project(':PushSDK').projectDir = new File('libs/PushSDK')
 project(':ShareSDK').projectDir = new File('libs/ShareSDK')
 project(':AnalysisSDK').projectDir = new File('libs/AnalysisSDK')
 project(':ImageLib').projectDir = new File('libs/ImageLib')

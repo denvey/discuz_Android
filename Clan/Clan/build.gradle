@@ -13,6 +13,7 @@ dependencies {
     compile project(':SlidingMenuLib')
     compile project(':android-viewbadger')
     compile project(':viewpageIndicator')
+    compile project(':PushSDK')
     compile project(':ShareSDK')
     compile project(':AnalysisSDK')
     compile project(':ImageLib')

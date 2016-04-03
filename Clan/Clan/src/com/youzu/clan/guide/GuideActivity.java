@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +14,8 @@ import com.kit.utils.ListUtils;
 import com.kit.utils.MessageUtils;
 import com.kit.utils.ZogUtils;
 import com.kit.widget.numberprogressbar.NumberProgressBar;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
 import com.youzu.android.framework.JsonUtils;
 import com.youzu.android.framework.view.annotation.ContentView;
 import com.youzu.android.framework.view.annotation.ViewInject;
@@ -24,26 +24,16 @@ import com.youzu.clan.app.ClanApplication;
 import com.youzu.clan.app.config.AppConfig;
 import com.youzu.clan.app.constant.Key;
 import com.youzu.clan.base.BaseActivity;
-import com.youzu.clan.base.callback.HttpCallback;
 import com.youzu.clan.base.callback.JSONCallback;
-import com.youzu.clan.base.common.Action;
-import com.youzu.clan.base.config.Url;
-import com.youzu.clan.base.json.ForumAdJson;
 import com.youzu.clan.base.json.ProfileJson;
-import com.youzu.clan.base.json.SplashAdJson;
-import com.youzu.clan.base.json.config.AdInfo;
 import com.youzu.clan.base.json.config.content.ContentConfig;
 import com.youzu.clan.base.json.forumnav.NavForum;
 import com.youzu.clan.base.json.homepageconfig.HomePageJson;
 import com.youzu.clan.base.json.profile.ProfileVariables;
-import com.youzu.clan.base.net.BaseHttp;
 import com.youzu.clan.base.net.ClanHttp;
-import com.youzu.clan.base.net.ClanHttpParams;
 import com.youzu.clan.base.util.AppSPUtils;
 import com.youzu.clan.base.util.ClanUtils;
 import com.youzu.clan.base.util.InitUtils;
-import com.youzu.clan.base.util.LoadImageUtils;
-import com.youzu.clan.base.util.StringUtils;
 import com.youzu.clan.base.util.theme.ThemeUtils;
 import com.youzu.clan.main.base.forumnav.DBForumNavUtils;
 
@@ -173,7 +163,14 @@ public class GuideActivity extends BaseActivity {
         });
 
         mImageView.setImageResource(R.drawable.splash);
+
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+//        mPushAgent.setPushCheck(true);    //默认不检查集成配置文件
+        mPushAgent.onAppStart();
+        mPushAgent.enable();
+
         progressBar();
+
     }
 
     @Override
@@ -186,7 +183,6 @@ public class GuideActivity extends BaseActivity {
         super.onDestroy();
         mHander.removeCallbacks(mToMainRunnable);
     }
-
 
     /**
      * 加载用户信息
